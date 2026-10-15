@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Katalog RuangRupa Store: telusuri tas kanvas, tumbler, aksesori, alat tulis, dekorasi meja, dan produk gaya hidup.">
+  <title>Katalog Produk | RuangRupa Store</title>
+
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===================== HEADER / NAVBAR ===================== -->
+  <header class="sticky-top">
+    <nav class="navbar navbar-expand-lg rr-navbar" aria-label="Navigasi utama">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+          <i class="bi bi-bag-heart-fill" aria-hidden="true"></i>
+          <div>Ruang<span>Rupa</span> Store</div>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuUtama" aria-controls="menuUtama" aria-expanded="false" aria-label="Buka menu navigasi">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menuUtama">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-lg-2">
+            <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="katalog.html">Katalog</a></li>
+            <li class="nav-item"><a class="nav-link" href="tentang.html">Tentang Kami</a></li>
+            <li class="nav-item ms-lg-2"><a class="btn btn-sage btn-sm px-4" href="login.html">Login</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ===================== JUDUL HALAMAN ===================== -->
+    <section class="page-header py-5 text-center">
+      <div class="container">
+        <h1 class="mb-3">Katalog Produk</h1>
+        <p class="lead mb-0 mx-auto" style="max-width: 640px;">
+          Delapan produk pilihan RuangRupa Store, mulai dari tas kanvas, tumbler, aksesori,
+          alat tulis, dekorasi meja, hingga produk gaya hidup. Cari nama produk atau pilih kategori.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===================== PENCARIAN DAN FILTER ===================== -->
+    <section class="py-4 section-white border-bottom" aria-label="Pencarian dan filter produk">
+      <div class="container">
+        <div class="row g-3 align-items-center">
+          <div class="col-lg-5">
+            <form id="formCari" role="search">
+              <label for="kolomCari" class="form-label visually-hidden">Cari produk</label>
+              <div class="input-group">
+                <span class="input-group-text" id="ikonCari"><i class="bi bi-search" aria-hidden="true"></i></span>
+                <input type="search" class="form-control" id="kolomCari" placeholder="Cari produk, misalnya: tumbler" autocomplete="off" aria-describedby="ikonCari">
+              </div>
+            </form>
+          </div>
+          <div class="col-lg-7">
+            <div id="filterKategori" class="d-flex flex-wrap gap-2 justify-content-lg-end" role="group" aria-label="Filter kategori">
+              <button type="button" class="btn btn-sm btn-sage" data-kategori="Semua" aria-pressed="true">Semua</button>
+              <button type="button" class="btn btn-sm btn-outline-sage" data-kategori="Tas" aria-pressed="false">Tas</button>
+              <button type="button" class="btn btn-sm btn-outline-sage" data-kategori="Tumbler" aria-pressed="false">Tumbler</button>
+              <button type="button" class="btn btn-sm btn-outline-sage" data-kategori="Aksesori" aria-pressed="false">Aksesori</button>
+              <button type="button" class="btn btn-sm btn-outline-sage" data-kategori="Alat Tulis" aria-pressed="false">Alat Tulis</button>
+              <button type="button" class="btn btn-sm btn-outline-sage" data-kategori="Dekorasi Meja" aria-pressed="false">Dekorasi Meja</button>
+              <button type="button" class="btn btn-sm btn-outline-sage" data-kategori="Gaya Hidup" aria-pressed="false">Gaya Hidup</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== DAFTAR PRODUK ===================== -->
+    <section class="py-5" aria-labelledby="judul-daftar">
+      <div class="container">
+        <h2 id="judul-daftar" class="visually-hidden">Daftar produk</h2>
+        <p id="infoHasil" class="text-muted small mb-4" aria-live="polite"></p>
+
+        <!-- Kartu produk dibuat oleh js/main.js dan dimasukkan ke sini -->
+        <div class="row g-4" id="daftarProduk"></div>
+
+        <!-- Pesan jika tidak ada produk yang cocok (disembunyikan lewat d-none) -->
+        <div id="pesanKosong" class="alert alert-warning text-center d-none mt-4" role="alert">
+          <i class="bi bi-search me-2" aria-hidden="true"></i>
+          Produk yang kamu cari tidak ditemukan. Coba kata kunci lain atau pilih kategori <strong>Semua</strong>.
+        </div>
+
+        <!-- Tampil hanya jika JavaScript dimatikan -->
+        <noscript>
+          <div class="alert alert-info" role="alert">
+            Katalog membutuhkan JavaScript. Aktifkan JavaScript di browser untuk melihat daftar produk.
+          </div>
+        </noscript>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="rr-footer pt-5 pb-4">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-5">
+          <p class="footer-brand h4 mb-2">RuangRupa Store</p>
+          <p class="mb-0">Katalog produk lokal kreatif dengan desain sederhana dan hangat. Website ini dibuat sebagai tugas UTS mata kuliah Pemrograman Web.</p>
+        </div>
+        <div class="col-6 col-lg-3 offset-lg-1">
+          <h5 class="h6 mb-3">Navigasi</h5>
+          <ul class="list-unstyled mb-0">
+            <li class="mb-2"><a href="index.html">Beranda</a></li>
+            <li class="mb-2"><a href="katalog.html">Katalog</a></li>
+            <li class="mb-2"><a href="tentang.html">Tentang Kami</a></li>
+            <li><a href="login.html">Login</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-lg-3">
+          <h5 class="h6 mb-3">Kategori</h5>
+          <ul class="list-unstyled mb-0">
+            <li class="mb-2"><a href="katalog.html?kategori=Tas">Tas</a></li>
+            <li class="mb-2"><a href="katalog.html?kategori=Tumbler">Tumbler</a></li>
+            <li class="mb-2"><a href="katalog.html?kategori=Alat%20Tulis">Alat Tulis</a></li>
+            <li><a href="katalog.html?kategori=Dekorasi%20Meja">Dekorasi Meja</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr class="my-4">
+      <p class="text-center small mb-0">&copy; 2026 RuangRupa Store. Proyek UTS Pemrograman Web.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JS Bundle (untuk tombol menu navbar) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- JavaScript katalog: data produk, pencarian, dan filter -->
+  <script src="js/main.js"></script>
+</body>
+</html>

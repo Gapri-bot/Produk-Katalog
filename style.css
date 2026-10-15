@@ -1,0 +1,537 @@
+/* ==========================================================
+   RuangRupa Store - css/style.css
+   CSS khusus untuk identitas visual. Bootstrap 5 tetap menjadi
+   dasar layout (grid, navbar, card, form, alert). File ini hanya
+   menyesuaikan warna, font, bentuk, dan efek hover.
+
+   Daftar isi:
+    1. Variabel warna
+    2. Dasar halaman
+    3. Bagian halaman
+    4. Navbar
+    5. Tombol
+    6. Badge
+    7. Hero dan judul halaman
+    8. Form
+    9. Kartu kategori dan kartu info
+   10. Kartu produk
+   11. Halaman detail produk
+   12. Keunggulan toko
+   13. Call to action
+   14. Halaman login
+   15. Footer
+   16. Aksesibilitas
+   17. Responsif dan preferensi gerak
+   ========================================================== */
+
+/* ----------------------------------------------------------
+   1. VARIABEL WARNA
+   Palet: krem, putih, hijau sage, cokelat muda.
+   Untuk mengganti warna situs, cukup ubah nilai di sini.
+   ---------------------------------------------------------- */
+:root {
+  --rr-cream: #f5efe0;
+  --rr-cream-dark: #ebe3cf;
+  --rr-white: #ffffff;
+  --rr-sage: #9caf88;        /* sage muda: dekorasi dan garis */
+  --rr-sage-dark: #587049;   /* sage tua: tombol dan teks (kontras baik) */
+  --rr-brown: #b08968;       /* cokelat muda: aksen dekoratif */
+  --rr-brown-mid: #8a6a4f;   /* cokelat sedang: badge */
+  --rr-brown-dark: #6b4f3a;  /* cokelat tua: judul dan footer */
+  --rr-text: #3b3128;
+  --rr-radius: 1rem;
+  --rr-shadow: 0 6px 20px rgba(107, 79, 58, 0.1);
+}
+
+/* ----------------------------------------------------------
+   2. DASAR HALAMAN
+   ---------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Poppins", system-ui, -apple-system, "Segoe UI", sans-serif;
+  background-color: var(--rr-cream);
+  color: var(--rr-text);
+  line-height: 1.7;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: "Playfair Display", Georgia, serif;
+  color: var(--rr-brown-dark);
+  font-weight: 700;
+}
+
+a {
+  color: var(--rr-sage-dark);
+}
+
+a:hover {
+  color: var(--rr-brown-dark);
+}
+
+/* ----------------------------------------------------------
+   3. BAGIAN HALAMAN
+   ---------------------------------------------------------- */
+
+/* Latar putih untuk bagian yang selang-seling dengan latar krem */
+.section-white {
+  background-color: var(--rr-white);
+}
+
+/* Judul bagian dengan garis hijau kecil di bawahnya */
+.section-title {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.6rem;
+}
+
+.section-title::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 56px;
+  height: 4px;
+  border-radius: 4px;
+  background-color: var(--rr-sage);
+  transform: translateX(-50%);
+}
+
+/* Agar bagian yang dituju lewat anchor (misalnya #kontak) tidak tertutup navbar */
+section[id] {
+  scroll-margin-top: 80px;
+}
+
+/* ----------------------------------------------------------
+   4. NAVBAR
+   ---------------------------------------------------------- */
+.rr-navbar {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid var(--rr-cream-dark);
+}
+
+.rr-navbar .navbar-brand {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 700;
+  color: var(--rr-brown-dark);
+  font-size: 1.35rem;
+}
+
+.rr-navbar .navbar-brand span {
+  color: var(--rr-sage-dark);
+}
+
+.rr-navbar .nav-link {
+  color: var(--rr-text);
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.rr-navbar .nav-link:hover,
+.rr-navbar .nav-link.active {
+  color: var(--rr-sage-dark);
+  border-bottom-color: var(--rr-sage);
+}
+
+/* ----------------------------------------------------------
+   5. TOMBOL
+   Bootstrap 5.3 mengatur warna tombol lewat variabel --bs-btn-*.
+   Dengan mengubah variabel itu, keadaan hover, fokus, dan aktif
+   ikut berubah tanpa menulis ulang semua aturan tombol.
+   ---------------------------------------------------------- */
+.btn-sage {
+  --bs-btn-color: var(--rr-white);
+  --bs-btn-bg: var(--rr-sage-dark);
+  --bs-btn-border-color: var(--rr-sage-dark);
+  --bs-btn-hover-color: var(--rr-white);
+  --bs-btn-hover-bg: var(--rr-brown-dark);
+  --bs-btn-hover-border-color: var(--rr-brown-dark);
+  --bs-btn-active-color: var(--rr-white);
+  --bs-btn-active-bg: var(--rr-brown-dark);
+  --bs-btn-active-border-color: var(--rr-brown-dark);
+  --bs-btn-focus-shadow-rgb: 88, 112, 73;
+  border-radius: 50rem;
+  font-weight: 500;
+  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-sage:hover,
+.btn-sage:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: var(--rr-shadow);
+}
+
+.btn-outline-sage {
+  --bs-btn-color: var(--rr-sage-dark);
+  --bs-btn-border-color: var(--rr-sage-dark);
+  --bs-btn-hover-color: var(--rr-white);
+  --bs-btn-hover-bg: var(--rr-sage-dark);
+  --bs-btn-hover-border-color: var(--rr-sage-dark);
+  --bs-btn-active-color: var(--rr-white);
+  --bs-btn-active-bg: var(--rr-sage-dark);
+  --bs-btn-active-border-color: var(--rr-sage-dark);
+  --bs-btn-focus-shadow-rgb: 88, 112, 73;
+  border-radius: 50rem;
+  border-width: 2px;
+  font-weight: 500;
+  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-outline-sage:hover,
+.btn-outline-sage:focus-visible {
+  transform: translateY(-2px);
+}
+
+/* Tombol krem untuk latar gelap (dipakai di kotak call to action) */
+.btn-cream {
+  --bs-btn-color: var(--rr-brown-dark);
+  --bs-btn-bg: var(--rr-cream);
+  --bs-btn-border-color: var(--rr-cream);
+  --bs-btn-hover-color: var(--rr-brown-dark);
+  --bs-btn-hover-bg: var(--rr-white);
+  --bs-btn-hover-border-color: var(--rr-white);
+  --bs-btn-active-color: var(--rr-brown-dark);
+  --bs-btn-active-bg: var(--rr-white);
+  --bs-btn-active-border-color: var(--rr-white);
+  border-radius: 50rem;
+  font-weight: 600;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-cream:hover,
+.btn-cream:focus-visible {
+  transform: translateY(-2px);
+}
+
+/* ----------------------------------------------------------
+   6. BADGE
+   ---------------------------------------------------------- */
+.badge-sage {
+  background-color: var(--rr-sage-dark);
+  color: var(--rr-white);
+  font-weight: 500;
+}
+
+.badge-brown {
+  background-color: var(--rr-brown-mid);
+  color: var(--rr-white);
+  font-weight: 500;
+}
+
+/* ----------------------------------------------------------
+   7. HERO DAN JUDUL HALAMAN
+   ---------------------------------------------------------- */
+.hero,
+.page-header,
+.login-wrap {
+  background: linear-gradient(135deg, var(--rr-cream) 0%, #e4ebdc 100%);
+}
+
+.hero-label {
+  display: inline-block;
+  padding: 0.3rem 1rem;
+  border-radius: 50rem;
+  background-color: var(--rr-white);
+  color: var(--rr-sage-dark);
+  font-size: 0.85rem;
+  font-weight: 500;
+  border: 1px solid var(--rr-sage);
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  line-height: 1.2;
+}
+
+.page-header h1 {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+}
+
+.hero-img {
+  border-radius: 1.5rem;
+  box-shadow: var(--rr-shadow);
+  background-color: var(--rr-white);
+}
+
+/* ----------------------------------------------------------
+   8. FORM
+   ---------------------------------------------------------- */
+.input-group-text {
+  background-color: var(--rr-cream);
+  border-color: var(--rr-cream-dark);
+  color: var(--rr-sage-dark);
+}
+
+.form-control {
+  border-color: var(--rr-cream-dark);
+}
+
+.form-control:focus {
+  border-color: var(--rr-sage);
+  box-shadow: 0 0 0 0.2rem rgba(156, 175, 136, 0.35);
+}
+
+.form-check-input:checked {
+  background-color: var(--rr-sage-dark);
+  border-color: var(--rr-sage-dark);
+}
+
+/* ----------------------------------------------------------
+   9. KARTU KATEGORI DAN KARTU INFO
+   ---------------------------------------------------------- */
+.category-card {
+  background-color: var(--rr-white);
+  border: 1px solid var(--rr-cream-dark);
+  border-radius: var(--rr-radius);
+  color: var(--rr-text);
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--rr-shadow);
+  border-color: var(--rr-sage);
+  color: var(--rr-text);
+}
+
+.category-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: var(--rr-cream);
+  color: var(--rr-sage-dark);
+  font-size: 1.8rem;
+}
+
+/* Kartu putih untuk halaman Tentang Kami */
+.info-card {
+  background-color: var(--rr-white);
+  border: 1px solid var(--rr-cream-dark);
+  border-radius: var(--rr-radius);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--rr-shadow);
+}
+
+.info-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 1rem;
+  background-color: var(--rr-cream);
+  color: var(--rr-sage-dark);
+  font-size: 1.5rem;
+}
+
+.info-card.text-center .info-icon {
+  border-radius: 50%;
+}
+
+/* ----------------------------------------------------------
+   10. KARTU PRODUK
+   Gambar dibuat persegi (1:1) agar ukurannya konsisten.
+   ---------------------------------------------------------- */
+.product-card {
+  border: 1px solid var(--rr-cream-dark);
+  border-radius: var(--rr-radius);
+  overflow: hidden;
+  background-color: var(--rr-white);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--rr-shadow);
+}
+
+.product-card .card-img-top {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  background-color: var(--rr-cream-dark);
+}
+
+.product-price {
+  color: var(--rr-brown-dark);
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+/* ----------------------------------------------------------
+   11. HALAMAN DETAIL PRODUK
+   ---------------------------------------------------------- */
+.detail-img {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 1.5rem;
+  background-color: var(--rr-white);
+  box-shadow: var(--rr-shadow);
+}
+
+.detail-price {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--rr-brown-dark);
+}
+
+.spec-box {
+  background-color: var(--rr-white);
+  border: 1px solid var(--rr-cream-dark);
+  border-radius: var(--rr-radius);
+}
+
+.spec-box dt {
+  color: var(--rr-brown-dark);
+  font-weight: 600;
+}
+
+.text-sage {
+  color: var(--rr-sage-dark);
+}
+
+.breadcrumb a {
+  color: var(--rr-sage-dark);
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  color: var(--rr-brown-dark);
+  text-decoration: underline;
+}
+
+/* ----------------------------------------------------------
+   12. KEUNGGULAN TOKO
+   ---------------------------------------------------------- */
+.feature-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 1.25rem;
+  background-color: var(--rr-sage-dark);
+  color: var(--rr-white);
+  font-size: 2rem;
+}
+
+/* ----------------------------------------------------------
+   13. CALL TO ACTION
+   ---------------------------------------------------------- */
+.cta-box {
+  background: linear-gradient(135deg, var(--rr-sage-dark), var(--rr-brown-dark));
+  border-radius: 1.5rem;
+  color: var(--rr-white);
+}
+
+.cta-box h2 {
+  color: var(--rr-white);
+}
+
+/* ----------------------------------------------------------
+   14. HALAMAN LOGIN
+   ---------------------------------------------------------- */
+.login-card {
+  background-color: var(--rr-white);
+  border: 1px solid var(--rr-cream-dark);
+  border-radius: 1.5rem;
+  box-shadow: var(--rr-shadow);
+}
+
+.login-logo {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background-color: var(--rr-cream);
+  color: var(--rr-sage-dark);
+  font-size: 2.2rem;
+}
+
+/* ----------------------------------------------------------
+   15. FOOTER
+   ---------------------------------------------------------- */
+.rr-footer {
+  background-color: var(--rr-brown-dark);
+  color: var(--rr-cream);
+}
+
+.rr-footer h5,
+.rr-footer .footer-brand {
+  color: var(--rr-white);
+  font-family: "Playfair Display", Georgia, serif;
+}
+
+.rr-footer a {
+  color: var(--rr-cream);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.rr-footer a:hover {
+  color: var(--rr-white);
+  text-decoration: underline;
+}
+
+.rr-footer hr {
+  border-color: rgba(245, 239, 224, 0.25);
+}
+
+/* ----------------------------------------------------------
+   16. AKSESIBILITAS
+   Garis fokus yang jelas bagi pengguna keyboard.
+   ---------------------------------------------------------- */
+a:focus-visible,
+button:focus-visible,
+.form-control:focus-visible {
+  outline: 3px solid var(--rr-sage-dark);
+  outline-offset: 2px;
+}
+
+.rr-footer a:focus-visible {
+  outline-color: var(--rr-cream);
+}
+
+/* ----------------------------------------------------------
+   17. RESPONSIF DAN PREFERENSI GERAK
+   ---------------------------------------------------------- */
+
+/* Layar kecil (di bawah 576px): rapatkan sedikit agar tidak terlalu lapang */
+@media (max-width: 575.98px) {
+  .detail-price {
+    font-size: 1.5rem;
+  }
+
+  .cta-box {
+    border-radius: 1rem;
+  }
+
+  .login-card .card-body {
+    padding: 1.5rem !important;
+  }
+}
+
+/* Pengguna yang meminta animasi dikurangi: matikan gerakan hover dan scroll halus */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
+
+  .btn-sage:hover,
+  .btn-sage:focus-visible,
+  .btn-outline-sage:hover,
+  .btn-outline-sage:focus-visible,
+  .btn-cream:hover,
+  .btn-cream:focus-visible,
+  .category-card:hover,
+  .info-card:hover,
+  .product-card:hover {
+    transform: none;
+  }
+}
